@@ -1,0 +1,30 @@
+{
+  "name": "nunzip",
+  "version": "1.0.0",
+  "description": "Command-line unzip utility running in node",
+  "main": "index.js",
+  "bin": {
+    "nunzip": "index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ahocevar/nunzip.git"
+  },
+  "keywords": [
+    "unzip",
+    "extract"
+  ],
+  "author": "Andreas Hocevar <andreas.hocevar@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahocevar/nunzip/issues"
+  },
+  "homepage": "https://github.com/ahocevar/nunzip#readme",
+  "dependencies": {
+    "node-getopt": "^0.3.2",
+    "unzipper": "^0.10.5"
+  }
+}
