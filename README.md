@@ -24,6 +24,6 @@ Complete usage according to `npx nunzip --help`:
 
 ```
 Usage: nunzip file[.zip] [OPTIONS]
-  -d         directory to extract to
+  -d         directory to extract to (default: working directory)
   -h, --help display this help
 ```
