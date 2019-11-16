@@ -20,8 +20,10 @@ Or using npx directly on the command line, e.g.
 
     npx nunzip my-archive.zip
 
+Complete usage according to `npx nunzip --help`:
+
 ```
 Usage: nunzip file[.zip] [OPTIONS]
-  -d         directory to extract to (default: /Users/ahocevar/projects/landesstrassen-noe)
+  -d         directory to extract to
   -h, --help display this help
 ```
