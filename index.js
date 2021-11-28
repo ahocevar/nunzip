@@ -11,7 +11,7 @@ if (argv._.length === 0 || argv.h || argv.help) {
   return;
 }
 
-const file = argv._.[0];
+const file = argv._[0];
 if (!file.endsWith('.zip')) {
   file += '.zip';
 }
