@@ -8,7 +8,7 @@ Command-line unzip utility running in node.
 
 ## Usage
 
-Once installed, you can run nunzip in `package.json` scripts, e.g.
+Once installed, nunzip is usefull for scripts in `package.json`, e.g.
 ```json
 {
   "scripts": {
@@ -16,14 +16,10 @@ Once installed, you can run nunzip in `package.json` scripts, e.g.
   }
 }
 ```
-Or using npx directly on the command line, e.g.
+Or use npx directly on the command line, e.g.
 
     npx nunzip my-archive.zip
 
-Complete usage according to `npx nunzip --help`:
-
 ```
-Usage: nunzip file[.zip] [OPTIONS]
-  -d         directory to extract to (default: working directory)
-  -h, --help display this help
+Usage: nunzip <zip file> [-d <output directory>]
 ```
