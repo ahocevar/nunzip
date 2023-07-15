@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/ahocevar/nunzip#readme",
   "dependencies": {
-    "minimist": "^1.2.5",
-    "unzipper": "^0.10.11"
+    "fflate": "^0.8.0",
+    "minimist": "^1.2.5"
   }
 }

@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const unzipper = require('unzipper');
+const fflate = require('fflate');
 
 const argv = require('minimist')(process.argv.slice(2));
 
@@ -17,5 +17,10 @@ if (!file.endsWith('.zip')) {
 }
 const outdir = argv.d || path.resolve('.');
 
-fs.createReadStream(file)
-  .pipe(unzipper.Extract({path: outdir}));
+const files = fflate.unzipSync(new Uint8Array(fs.readFileSync(file).buffer));
+
+for (const name in files) {
+  const outfile = path.join(outdir, name);
+  fs.mkdirSync(path.dirname(outfile), {recursive: true});
+  fs.writeFileSync(outfile, files[name]);
+}
