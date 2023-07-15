@@ -15,7 +15,10 @@
   },
   "keywords": [
     "unzip",
-    "extract"
+    "extract",
+    "cli",
+    "zip",
+    "archive"
   ],
   "author": "Andreas Hocevar <andreas.hocevar@gmail.com>",
   "license": "ISC",
