@@ -4,6 +4,8 @@ const fs = require('fs');
 const path = require('path');
 const fflate = require('fflate');
 
+(async() => {
+
 const argv = require('minimist')(process.argv.slice(2));
 
 if (argv._.length === 0 || argv.h || argv.help) {
@@ -11,16 +13,41 @@ if (argv._.length === 0 || argv.h || argv.help) {
   return;
 }
 
-const file = argv._[0];
-if (!file.endsWith('.zip')) {
-  file += '.zip';
+const archive = argv._[0];
+if (!archive.endsWith('.zip')) {
+  archive += '.zip';
 }
 const outdir = argv.d || path.resolve('.');
 
-const files = fflate.unzipSync(new Uint8Array(fs.readFileSync(file).buffer));
+await new Promise((resolve, reject) => {
+  let done = false;
+  const unzip = new fflate.Unzip((file) => {
+    const outfile = path.join(outdir, file.name);
+    const writeStream = fs.createWriteStream(outfile);
+    file.ondata = (err, chunk, final) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+      writeStream.write(chunk);
+      if (final) {
+        writeStream.end();
+        console.log(outfile);
+        if (done) {
+          resolve();
+        }
+      }
+    };
+    file.start();
+  });
+  unzip.register(fflate.AsyncUnzipInflate);
 
-for (const name in files) {
-  const outfile = path.join(outdir, name);
-  fs.mkdirSync(path.dirname(outfile), {recursive: true});
-  fs.writeFileSync(outfile, files[name]);
-}
+  const inStream = fs.createReadStream(archive);
+  inStream.on('data', (chunk) => unzip.push(chunk));
+  inStream.on('end', () => {
+    done = true;
+    unzip.push(new Uint8Array(), true);
+  });
+});
+
+})();
