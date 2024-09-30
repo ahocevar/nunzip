@@ -26,7 +26,6 @@ await new Promise((resolve, reject) => {
       fs.mkdirSync(path.join(outdir, file.name), {recursive: true});
       return;
     }
-    console.log(file.name);
     const outfile = path.join(outdir, file.name);
     const writeStream = fs.createWriteStream(outfile);
     file.ondata = (err, chunk, final) => {
