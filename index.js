@@ -22,6 +22,11 @@ const outdir = argv.d || path.resolve('.');
 await new Promise((resolve, reject) => {
   let done = false;
   const unzip = new fflate.Unzip((file) => {
+    if (file.name.endsWith('/') || file.name.endsWith('\\')) {
+      fs.mkdirSync(path.join(outdir, file.name), {recursive: true});
+      return;
+    }
+    console.log(file.name);
     const outfile = path.join(outdir, file.name);
     const writeStream = fs.createWriteStream(outfile);
     file.ondata = (err, chunk, final) => {
